@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
 
         var data = {
-            chat_id: '',
+            chat_id: $('.selected').attr('value'),
             message: $("#message-input").val()
         }
 

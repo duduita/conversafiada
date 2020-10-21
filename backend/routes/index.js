@@ -21,7 +21,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
             Chat.find({ _id: {$in: chats_id}}).then((chat) => {
 
                 Message.find({ chat_id: chat[0]._id }).sort({date: "asc"}).then((messages) => {
-                    
+        
                     res.render("dashboard", {
                         user: req.user,
                         messages: messages,
