@@ -16,18 +16,21 @@
             <input type="text" placeholder="Search" />
         </div>
         <div id="participants-list">
-            <div class="participant">
-                <img src="./images/rodrigo.jpg" alt="rodrigo" />
-                <div class="name">
-                    Rodrigo Teixeira
+            <% chat.forEach(function(chat, _id){ %>
+                <div class="participant">
+                    <img src="./images/rodrigo.jpg" alt="rodrigo" />
+                    <div class="name">
+                        <%= chat.name %>
+                    </div>
+                    <div class="created-date">
+                        Oct 20
+                    </div>
+                    <div class="conversation-message">
+                        This is a message!
+                    </div>
                 </div>
-                <div class="created-date">
-                    Oct 20
-                </div>
-                <div class="conversation-message">
-                    This is a message!
-                </div>
-            </div>
+                <% }) %>
+
         </div>
         <div id="new-message-container">
 
