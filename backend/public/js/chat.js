@@ -15,16 +15,18 @@ $(document).ready(function() {
 
     $("#chat-form").submit(function(e) {
         e.preventDefault();
-
         var mensagem = $("#message-input").val();
 
         if (mensagem.length == 0) {
             return;
         }
 
-        socket.emit("enviar mensagem", mensagem, function() {
-            $("#message-input").val("");
-        });
+        socket.emit(
+            "enviar mensagem", { msg: mensagem, usr: usuario },
+            function() {
+                $("#message-input").val("");
+            }
+        );
 
         var mensagem_formatada = `<div class="message-row you-message">
                                         <div class="message-content">

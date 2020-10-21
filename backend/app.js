@@ -76,10 +76,11 @@ io.on("connection", function(socket) {
     socket.on("enviar mensagem", function(mensagem, callback) {
         // var mensagem = dados.msg;
         // var usuario = dados.usr;
+        var session = socket.handshake.session;
 
         // mensagem = "[ " + pegarDataAtual() + " ] " + socket.apelido + ": " + mensagem;
         console.log(mensagem);
-
+        console.log(session.name);
         // var msgObj = {msg: mensagem, tipo: ''};
 
         // if (usuario == null || usuario == ''){

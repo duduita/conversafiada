@@ -4,6 +4,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const Message = require("../models/Message");
 const Chat = require("../models/Chat");
 const User_chat = require("../models/User_chat");
+const test = require("../models/test");
 
 // Welcome Page
 router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
