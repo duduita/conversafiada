@@ -87,10 +87,10 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-// Logout
+/* // Logout
 router.get("/message", (req, res) => {
     res.redirect("/users/message");
-});
+}); */
 
 // Logout
 router.get("/logout", (req, res) => {
