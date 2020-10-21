@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
+var socket = require("socket.io");
 
+var fs = require("fs");
 const app = express();
 
 // Passport Config
@@ -56,6 +58,39 @@ app.use("/users", require("./routes/users.js"));
 app.use("/message", require("./routes/message.js"));
 app.use(express.static("public"));
 
+app.get("/socket", function(req, res) {
+    res.sendFile(__dirname + "/socket.io/socket.io.js");
+});
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+//app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+var http = require("http");
+
+var server = http.createServer(app);
+server.listen(5000);
+var io = socket.listen(server);
+
+io.on("connection", function(socket) {
+    socket.on("enviar mensagem", function(mensagem, callback) {
+        // var mensagem = dados.msg;
+        // var usuario = dados.usr;
+
+        // mensagem = "[ " + pegarDataAtual() + " ] " + socket.apelido + ": " + mensagem;
+        console.log(mensagem);
+
+        // var msgObj = {msg: mensagem, tipo: ''};
+
+        // if (usuario == null || usuario == ''){
+        //     io.sockets.emit("atualizar mensagens", msgObj);
+        //     armazenarMensagem(msgObj);
+        // } else {
+        //     msgObj.tipo = 'privado';
+        //     socket.emit("atualizar mensagens", msgObj);
+        //     usuarios[usuario].emit("atualizar mensagens", msgObj);
+        // }
+        socket.broadcast.emit("atualizar mensagens", mensagem);
+        callback();
+    });
+});
