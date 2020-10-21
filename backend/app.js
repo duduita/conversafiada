@@ -63,11 +63,44 @@ app.use("/message", require("./routes/message.js"));
 app.use(express.static("public"));
 
 io.on("connection", function(socket) {
-    socket.on("enviar mensagem", function(mensagem, callback) {
+    socket.join("home room");
 
-        console.log(mensagem);
+    socket.on("enviar mensagem", function(mensagem, callback) {
+        var sala = io.sockets.adapter.sids[socket.id];
         socket.broadcast.emit("atualizar mensagens", mensagem);
         callback();
-        
+        console.log("message '${mensagem}' emmited on: ${sala}");
+    });
+
+    socket.on("entrar sala", function(sala){
+        var rooms = io.sockets.adapter.sids[socket.id];
+        for (var room in rooms){
+            socket.leave(room);
+        }
+        socket.join(sala);
+        console.log('changed to room: ${sala}');
     });
 });
+
+/* const Chat = require("./models/Chat");
+const UC = require("./models/User_chat");
+var chats = []
+var users = ['5f909449687b1e9571b1fde8']
+const qry = Chat.find({})
+qry.select('_id')
+qry.exec(function(err, a){
+    a.forEach(function(r){
+        chats.push(r['_id'])
+    })
+    for(var i=0; i<chats.length; i++){
+        for (var j=0; j<users.length; j++){
+            console.log(chats[i] + ':' + users[j])
+            const newUC = new UC({
+                user_id: new mongoose.Types.ObjectId(users[j]),
+                chat_id: new mongoose.Types.ObjectId(chats[i])
+            });
+            newUC.save().catch((error) => console.log(error))
+        }
+    }
+})
+console.log('ok') */

@@ -10,6 +10,9 @@ $(document).ready(function() {
         $(this).click(function() {
             $(".selected").removeClass("selected");
             $(this).addClass("selected");
+            var sala = $(this).find(".name").text();
+            sala = sala.replaceAll(' ', '').replace(/\n/g,'');
+            socket.emit("entrar sala", sala);
         });
     });
 
@@ -22,6 +25,13 @@ $(document).ready(function() {
             return;
         }
 
+        var data = {
+            chat_id: '',
+            message: $("#message-input").val()
+        }
+
+        $.post('/message/send', data)
+
         socket.emit("enviar mensagem", mensagem, function() {
             $("#message-input").val("");
         });
@@ -30,7 +40,10 @@ $(document).ready(function() {
                                         <div class="message-content">
                                             <div class="message-text">${mensagem}</div>
                                         </div>
-                                     </div>`;
+                                        <div class="message-time">
+                                            20 oct
+                                        </div>
+                                    </div>`;    
 
         $("#chat-message-list").append(mensagem_formatada);
         document.getElementById(

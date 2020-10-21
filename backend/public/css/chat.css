@@ -179,11 +179,11 @@ body {
     margin-bottom: 20px;
 }
 
-.message-content {
+.message-content, .message-time {
     display: grid;
 }
 
-.you-message {
+.you-message, .message-time {
     justify-content: end;
 }
 

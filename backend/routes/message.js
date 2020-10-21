@@ -3,18 +3,10 @@ const router = express.Router();
 const passport = require("passport");
 const { forwardAuthenticated } = require("../config/auth");
 
-router.get("/", (req, res) => {
-    res.send("Página principal do painel ADM");
+router.post("/send", (req, res) => {
+    console.log('post recebido:')
+    console.log(req.user)
+    console.log('fim')
 });
-
-router.get("/message", forwardAuthenticated, (req, res) =>
-    res.render("message")
-);
-
-router.get("/posts", (req, res) => {
-    res.send("Página");
-});
-
-
 
 module.exports = router;
