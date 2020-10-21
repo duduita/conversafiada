@@ -59,8 +59,7 @@ $(document).ready(function() {
                                         </div>
                                      </div>`;
 
-        $("#historico_mensagens").append(mensagem_formatada);
-        console.log("oa");
+        $("#chat-message-list").append(mensagem_formatada);
         var el = document.getElementById("chat-message-list");
         el.scrollTop = el.scrollHeight;
     });
