@@ -24,5 +24,6 @@ $ npm run dev
 ```
 # Demo (Versão BETA)
 
-https://conversafiada2.herokuapp.com//
+https://conversafiada2.herokuapp.com/
+
 https://www.youtube.com/watch?v=ub5ISMeNfmM
