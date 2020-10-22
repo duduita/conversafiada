@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-const Message = require("../models/Message");
+const Messages = require("../models/Messages");
 const Chat = require("../models/Chat");
 const User_chat = require("../models/User_chat");
 
@@ -20,7 +20,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
             
             Chat.find({ _id: {$in: chats_id}}).then((chat) => {
 
-                Message.find({ chat_id: chat[0]._id }).sort({date: "asc"}).then((messages) => {
+                Messages.find({ chat_id: chat[0]._id }).sort({date: "asc"}).then((messages) => {
         
                     res.render("dashboard", {
                         user: req.user,
