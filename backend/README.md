@@ -1,10 +1,12 @@
-# Node.js & Passport Login
+# Projeto Exploratório CES-26 
 
-This is a user login and registration app using Node.js, Express, Passport, Mongoose, EJS and some other packages.
+Uma aplicação decriada com sistema de autentificação e login, bem como chat-system, utilizando Node.js, Express, Passport, Mongoose, EJS e alguns outros pacotes. Como banco de dados, foi utilizado MongoDB.
 
-### Version: 2.0.0
+É uma Single-Page que possui:
+   - Chat-system que responde em tempo real às conversas com diferentes tipos de grupos
+   - Sistema de login e autentificação com sistema de sessão por usuário
 
-### Usage
+### Uso
 
 ```sh
 $ npm install
@@ -17,10 +19,10 @@ $ npm start
 # Or run with Nodemon
 $ npm run dev
 
-# Visit http://localhost:5000
+# Acesso localhost:5000
+
 ```
+# Demo (Versão BETA)
 
-### MongoDB
-
-Open "config/keys.js" and add your MongoDB URI, local or Atlas
-(Padeiro already edited this)
+https://conversafiada2.herokuapp.com//
+https://www.youtube.com/watch?v=ub5ISMeNfmM
