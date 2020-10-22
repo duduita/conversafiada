@@ -4,7 +4,7 @@ Uma aplicação criada com sistema de autentificação e login, bem como chat-sy
 
 É uma Single-Page que possui:
    - Chat-system que responde em tempo real às conversas com diferentes tipos de grupos
-   - Sistema de login e autentificação com sistema de sessão por usuário
+   - Sistema de login e autentificação com sistema de sessão
 
 ### Uso
 
