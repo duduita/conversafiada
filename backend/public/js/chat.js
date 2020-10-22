@@ -7,12 +7,21 @@ $(document).ready(function() {
     var socket = io.connect();
 
     $(".participant").each(function() {
-        $(this).click(function() {
-            $(".selected").removeClass("selected");
-            $(this).addClass("selected");
-            var sala = $(this).find(".name").text();
-            sala = sala.replaceAll(' ', '').replace(/\n/g,'');
-            socket.emit("entrar sala", sala);
+        $(this).click(function(e) {
+            var selected = $(".selected")[0]
+            if (!($.contains(selected, e.target) || selected == e.target)){
+                $(".selected").removeClass("selected");
+                $(this).addClass("selected");
+                var sala = $(this).find(".name").text();
+                sala = sala.replaceAll(' ', '').replace(/\n/g,'');
+                socket.emit("entrar sala", sala);
+
+                document.getElementById("chat-message-list").innerHTML = ""
+
+                $.get('message/get?chat_id=' + $('.selected').attr('value'), (data) => {
+                    document.getElementById("chat-message-list").innerHTML = data
+                })
+            }
         });
     });
 
