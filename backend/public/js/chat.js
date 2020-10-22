@@ -44,34 +44,26 @@ $(document).ready(function() {
             message: $("#message-input").val()
         }
 
-        $.post('/message/send', data)
+        $.post('/message/send', data, (res) => {
+            var dados = JSON.parse(res)
 
-        socket.emit("enviar mensagem", mensagem, function() {
-            $("#message-input").val("");
-        });
+            console.log(dados)
 
-        var mensagem_formatada = `<div class="message-row you-message">
-                                        <div class="message-content">
-                                            <div class="message-text">${mensagem}</div>
-                                        </div>
-                                        <div class="message-time">
-                                            20 oct
-                                        </div>
-                                    </div>`;    
+            socket.emit("enviar mensagem", dados, function() {
+                $("#message-input").val("");
+            });
 
-        $("#chat-message-list").append(mensagem_formatada);
-        document.getElementById(
-            "chat-message-list"
-        ).scrollTop = document.getElementById("chat-message-list").scrollHeight;
+            var mensagem_formatada = '<div class="message-row you-message"><div class="message-content"><div class="message-text">' + dados.message + '</div><div class="message-time">' + dados.date + '</div></div></div>'   
+
+            $("#chat-message-list").append(mensagem_formatada);
+            document.getElementById(
+                "chat-message-list"
+            ).scrollTop = document.getElementById("chat-message-list").scrollHeight;
+        })
     });
 
-    socket.on("atualizar mensagens", function(mensagem) {
-        var mensagem_formatada = `<div class="message-row other-message">
-                                        <div class="message-content">
-                                            <img src="./images/rodrigo.jpg" alt="rodrigo" /> 
-                                            <div class="message-text">${mensagem}</div>
-                                        </div>
-                                     </div>`;
+    socket.on("atualizar mensagens", function(dados) {
+        var mensagem_formatada = '<div class="message-row other-message"><div class="message-content"><span>'+dados.name+'</span><img src="./images/default.png"/><div class="message-text">' + dados.message + '</div><div class="message-time">' + dados.date + '</div></div></div>'
 
         $("#chat-message-list").append(mensagem_formatada);
         var el = document.getElementById("chat-message-list");

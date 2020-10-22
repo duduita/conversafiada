@@ -68,6 +68,7 @@ io.on("connection", function(socket) {
     socket.on("enviar mensagem", function(mensagem, callback) {
         var sala = io.sockets.adapter.sids[socket.id];
         sala = Object.keys(sala)[Object.keys(sala).length - 1];
+
         socket.broadcast.to(sala).emit("atualizar mensagens", mensagem);
         callback();
     });

@@ -12,6 +12,8 @@ router.post("/send", (req, res) => {
         name: req.user.name
     });
     newMsg.save()
+    
+    res.end(JSON.stringify(newMsg))
 });
 
 router.get("/get", (req, res) => {
