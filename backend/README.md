@@ -1,6 +1,6 @@
 # Projeto Exploratório CES-26 
 
-Uma aplicação decriada com sistema de autentificação e login, bem como chat-system, utilizando Node.js, Express, Passport, Mongoose, EJS e alguns outros pacotes. Como banco de dados, foi utilizado MongoDB.
+Uma aplicação criada com sistema de autentificação e login, bem como chat-system, utilizando Node.js, Express, Passport, Mongoose, EJS e alguns outros pacotes. Como banco de dados, foi utilizado MongoDB.
 
 É uma Single-Page que possui:
    - Chat-system que responde em tempo real às conversas com diferentes tipos de grupos
