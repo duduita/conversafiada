@@ -47,13 +47,11 @@ $(document).ready(function() {
         $.post('/message/send', data, (res) => {
             var dados = JSON.parse(res)
 
-            console.log(dados)
-
             socket.emit("enviar mensagem", dados, function() {
                 $("#message-input").val("");
             });
-
-            var mensagem_formatada = '<div class="message-row you-message"><div class="message-content"><div class="message-text">' + dados.message + '</div><div class="message-time">' + dados.date + '</div></div></div>'   
+            
+            var mensagem_formatada = '<div class="message-row you-message"><div class="message-content"><div class="message-text">' + dados.message + '</div><div class="message-time">' + new Date(dados.date).toLocaleString() + '</div></div></div>'   
 
             $("#chat-message-list").append(mensagem_formatada);
             document.getElementById(
@@ -63,7 +61,7 @@ $(document).ready(function() {
     });
 
     socket.on("atualizar mensagens", function(dados) {
-        var mensagem_formatada = '<div class="message-row other-message"><div class="message-content"><span>'+dados.name+'</span><img src="./images/default.png"/><div class="message-text">' + dados.message + '</div><div class="message-time">' + dados.date + '</div></div></div>'
+        var mensagem_formatada = '<div class="message-row other-message"><div class="message-content"><span>'+dados.name+'</span><img src="./images/default.png"/><div class="message-text">' + dados.message + '</div><div class="message-time">' + new Date(dados.date).toLocaleString() + '</div></div></div>'
 
         $("#chat-message-list").append(mensagem_formatada);
         var el = document.getElementById("chat-message-list");
