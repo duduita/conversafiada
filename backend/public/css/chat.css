@@ -139,15 +139,6 @@ body {
     padding: 0 15px;
 }
 
-#new-message-container a {
-    display: grid;
-    place-content: center center;
-    background: #eee;
-    border-radius: 100%;
-    color: #002c88;
-    text-decoration: none;
-    font-size: 3.6rem;
-}
 
 #chat-title,
 #chat-form {
@@ -258,4 +249,19 @@ body {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+#new-message-container img {
+    border-radius: 30px;
+    width: 45px;
+    cursor: pointer;
+}
+#new-message-container {
+    display: grid;
+    grid: 45px / 40px;
+    align-content: center;
+    grid-area: new-message-container;
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 0 10px;
+    padding: 0 20px;
 }

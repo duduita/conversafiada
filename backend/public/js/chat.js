@@ -18,8 +18,13 @@ $(document).ready(function() {
 
                 document.getElementById("chat-message-list").innerHTML = ""
 
+                document.getElementById("chat-title").textContent = this.children[1].innerText
+
                 $.get('message/get?chat_id=' + $('.selected').attr('value'), (data) => {
                     document.getElementById("chat-message-list").innerHTML = data
+                    document.getElementById(
+                        "chat-message-list"
+                    ).scrollTop = document.getElementById("chat-message-list").scrollHeight;
                 })
             }
         });
